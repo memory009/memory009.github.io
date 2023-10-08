@@ -24,7 +24,7 @@
 <meta property="og:description" content="解决hexo -d 部署后与github.io不同步问题  github.io中应避免出现两个及以上的branch，建议保留master  hexo - d 部署到github.io 时，hexo会根据_config.yml下的Deployment寻找github中的branch，多数教程中涉及在Deployment末尾加入_config.yml比如： Deployment123456# Depl">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-08T07:55:36.000Z">
-<meta property="article:modified_time" content="2023-10-08T08:35:14.394Z">
+<meta property="article:modified_time" content="2023-10-08T13:38:05.491Z">
 <meta property="article:author" content="Qisong He">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="github">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          730 字
+          747 字
         
       </span>
     
@@ -302,7 +302,7 @@
 </ul>
 <p>测试方法：<br>在管理员权限下<code>Git bash</code>进入blog目录下</p>
 <ul>
-<li><code>$ hexo -clean </code>  : 清理缓存(慎用，会清掉img里面的图片缓存)</li>
+<li><code>$ hexo -clean </code>  : 清理缓存(慎用，会将blog&#x2F;public文件夹内全部东西恢复默认)</li>
 <li><code>$ hexo generate </code>   : 生成静态网站</li>
 <li><code>$ hexo -deploy</code> : 部署静态网站</li>
 <li><code>$ hexo server  </code> : 在本地预览静态网站</li>
