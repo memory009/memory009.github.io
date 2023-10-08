@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Cheeson&#39;s Blog">
 <meta property="og:description" content="PointPillars PointPillars.pdf  PointPillar的网络结构 (D, P, N)–&gt; (C, P, N) –&gt; (C, P) –&gt; (C, H, W) –&gt; (6C, H&#x2F;2, W&#x2F;2) –&gt; bbox    提出一种新的encoding points的方式: Pillar fast version–  平均62H">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_1.png">
-<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_2.png">
-<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_3.png">
-<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_4.png">
+<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_1.png">
+<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_2.png">
+<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_3.png">
+<meta property="og:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_4.png">
 <meta property="article:published_time" content="2023-10-08T08:40:18.962Z">
-<meta property="article:modified_time" content="2023-10-08T12:31:47.158Z">
+<meta property="article:modified_time" content="2023-10-08T12:34:20.425Z">
 <meta property="article:author" content="Qisong He">
 <meta property="article:tag" content="Autopilot">
 <meta property="article:tag" content="Adversarial Attack">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_1.png">
+<meta name="twitter:image" content="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -294,7 +294,7 @@
 <p>PointPillar的网络结构</p>
 <p>(D, P, N)–&gt; (C, P, N) –&gt; (C, P) –&gt; (C, H, W) –&gt; (6C, H&#x2F;2, W&#x2F;2) –&gt; bbox</p>
 </blockquote>
-<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_1.png" srcset="/img/loading.gif" lazyload alt="image-20230427143038147"></p>
+<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_1.png" srcset="/img/loading.gif" lazyload alt="image-20230427143038147"></p>
 <ol>
 <li>提出一种新的encoding points的方式: Pillar</li>
 <li>fast version–  平均62Hz , faster version– 105 Hz, 超过SECOND三倍。(激光雷达工作频率通常是5HZ&#x2F;10HZ&#x2F;20Hz，105HZ的LIDAR现实中比较少)</li>
@@ -317,7 +317,7 @@
 </blockquote>
 <p>$$<br>(x,y,z,r,x_c,y_c,z_c,x_p,y_p)<br>$$</p>
 <p>$$ x,y,z$$为点云的真实坐标信息和反射强度,$$x_c,y_c,z_c$$为该点云所处Pillar中的所有点的几何中心；$$x_p,y_p$$为$$x-x_c,y-y_c$$,反应了点与几何中心的相对位置。</p>
-<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_2.png" srcset="/img/loading.gif" lazyload alt="image-20230427144948210"></p>
+<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_2.png" srcset="/img/loading.gif" lazyload alt="image-20230427144948210"></p>
 <ul>
 <li>特征提取网络：应用线性层(linear layer)，然后应用 BatchNorm 和 ReLU 以生成 (C, P, N) 大小的<br>张量。</li>
 </ul>
@@ -332,7 +332,7 @@
 <li>Backbone 通常由一系列卷积层组成，通常以分层结构组织，学习检测输入图像中越来越复杂和抽象的特征。然后，这些特征被传递给一个或多个执行分类任务的全连接层。</li>
 <li>Backbone 结构的选择对网络的性能有很大的影响，包括准确性和计算效率方面。流行的二维CNN的骨干架构包括VGG、ResNet、Inception和MobileNet等。   </li>
 <li>在许多情况下，骨干结构可以在一个大的数据集上进行预训练，如ImageNet，以学习一套通用的特征，这些特征可以为特定的任务进行微调。这种方法被称为迁移学习，在为特定的应用开发和训练一个新的CNN时可以节省大量的时间和计算资源。</li>
-<li><img src="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_3.png" srcset="/img/loading.gif" lazyload alt="image-20230427221157655"></li>
+<li><img src="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_3.png" srcset="/img/loading.gif" lazyload alt="image-20230427221157655"></li>
 <li>mmdetection3D中针对KITTi数据集使用的Backbone是SECFN，下面只放KITTI的结果，其他结果(nuScenes&#x2F;Lyft&#x2F;Waymo)详见<a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/blob/main/configs/pointpillars/README.md">https://github.com/open-mmlab/mmdetection3d/blob/main/configs/pointpillars/README.md</a></li>
 <li><h4 id="Results-and-models"><a href="#Results-and-models" class="headerlink" title="Results and models"></a>Results and models</h4><h5 id="KITTI"><a href="#KITTI" class="headerlink" title="KITTI"></a>KITTI</h5><table>
 <thead>
@@ -368,7 +368,7 @@
 </li>
 </ul>
 <p> <strong>(C, H, W) –&gt; (6C, H&#x2F;2, W&#x2F;2)</strong></p>
-<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/pointpillars_4.png" srcset="/img/loading.gif" lazyload alt="image-20230427151300106"></p>
+<p><img src="https://github.com/memory009/memory009.github.io/tree/master/img/figure/pointpillars_4.png" srcset="/img/loading.gif" lazyload alt="image-20230427151300106"></p>
 <ul>
 <li><p>第一个网络：自上而下的网络以越来越小的空间分辨率产生特征，同时提升特征图的维度</p>
 </li>
