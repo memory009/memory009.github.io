@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Qisong He">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MMDetection(2D)MMDetection is an open source object detection toolbox based on PyTorch. It consists of:  Training recipes for object detection and instance segmentation. 360+ pre-trained models to use">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MMDetection &amp; object detection方面的调研">
+<meta property="og:url" content="http://example.com/2023/10/08/MMDetection/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MMDetection(2D)MMDetection is an open source object detection toolbox based on PyTorch. It consists of:  Training recipes for object detection and instance segmentation. 360+ pre-trained models to use">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.00.08_PM_JkHBLyY.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_12.57.06_PM_O1JC9NU.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.30.37_PM_Be7ErEb.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/FASTER-RCNN_WhjSRSs.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_2.25.41_PM_XDv3zNX.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_2.51.06_PM_TdvT9xn.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-06_at_12.30.12_PM.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_12.53.32_PM_GHe6eIp.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_3.03.28_PM_R0DaAzb.png">
+<meta property="og:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.23.54_PM_XwE0mAh.png">
+<meta property="og:image" content="https://github.com/open-mmlab/mmdetection3d/raw/main/resources/mmdet3d-logo.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/d5d535f53f2cb047c2b4382b8fd3c2913519abad35badcd4f22bd45d174f450a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f646f63732d6c61746573742d626c7565">
+<meta property="og:image" content="https://github.com/open-mmlab/mmdetection3d/workflows/build/badge.svg">
+<meta property="og:image" content="https://camo.githubusercontent.com/9d9dd5bbee06fe143d72c2a2f1907aaf74c2a68c716fcaa52e3cbcb9f8677033/68747470733a2f2f636f6465636f762e696f2f67682f6f70656e2d6d6d6c61622f6d6d646574656374696f6e33642f6272616e63682f6d61737465722f67726170682f62616467652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/aa0f4ed735ed4dbdbbc25ab552ee5d61089224d21ba1c545d7c16e0fa94da8d8/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6f70656e2d6d6d6c61622f6d6d646574656374696f6e33642e737667">
+<meta property="og:image" content="https://github.com/open-mmlab/mmdetection3d/raw/main/resources/mmdet3d_outdoor_demo.gif">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-c37643d43854f555e89cc3f3e5aae138_r.jpg">
+<meta property="og:image" content="https://www.leishen-lidar.com/public/attachment/images/20210525/833cf8d7b65d2925469d07b584a1eee2.jpg">
+<meta property="og:image" content="https://www.leishen-lidar.com/public/attachment/images/20210525/ec827ed4b51ce3d2c38122cf071dcde5.jpg">
+<meta property="og:image" content="https://www.leishen-lidar.com/public/attachment/images/20210430/e8cddbf06dc62fd428b3c514568733c0.jpg">
+<meta property="og:image" content="https://www.leishen-lidar.com/public/attachment/images/20210430/d375483090b6c825e5db230913d94b5c.jpg">
+<meta property="article:published_time" content="2023-10-08T08:40:18.965Z">
+<meta property="article:modified_time" content="2023-10-08T08:48:11.998Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Autopilot">
+<meta property="article:tag" content="object detection">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.00.08_PM_JkHBLyY.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MMDetection &amp; object detection方面的调研 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cheeson&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MMDetection &amp; object detection方面的调研"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-08 16:40" pubdate>
+          2023年10月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MMDetection &amp; object detection方面的调研</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="MMDetection-2D"><a href="#MMDetection-2D" class="headerlink" title="MMDetection(2D)"></a>MMDetection(2D)</h2><p>MMDetection is an open source object detection toolbox based on PyTorch. It consists of:</p>
+<ul>
+<li>Training recipes for object detection and instance segmentation.</li>
+<li>360+ pre-trained models to use for fine-tuning 微调 (or training afresh).</li>
+<li>Dataset support for popular vision datasets such as COCO, Cityscapes, LVIS and PASCAL VOC.</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection">https://paperswithcode.com/lib/mmdetection</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">MODEL</th>
+<th align="center">TRANING ON</th>
+<th align="center">BOX AP</th>
+<th align="center">INFERENCETIME</th>
+<th>PAPER</th>
+<th>YEAR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.00.08_PM_JkHBLyY.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/dynamic-r-cnn">Dynamic R-CNN</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">38.9</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_12.57.06_PM_O1JC9NU.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/detr">DETR</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">40.1</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.30.37_PM_Be7ErEb.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/groie">GRoIE</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">42.2</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/FASTER-RCNN_WhjSRSs.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/regnet">RegNet</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">43.1</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_2.25.41_PM_XDv3zNX.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/paa">PAA</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">45.1</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_2.51.06_PM_TdvT9xn.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/sparse-r-cnn">Sparse R-CNN</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">46.2</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-06_at_12.30.12_PM.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/resnest">ResNeSt</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">47.7</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_12.53.32_PM_GHe6eIp.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/detectors">DetectoRS</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">49.1</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_3.03.28_PM_R0DaAzb.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/vfnet">VFNet</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">50.4</td>
+<td align="center"></td>
+<td></td>
+<td>2020</td>
+</tr>
+<tr>
+<td><img src="https://production-media.paperswithcode.com/models/Screen_Shot_2021-02-24_at_1.23.54_PM_XwE0mAh.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/lib/mmdetection/generalized-focal-loss">Generalized Focal Loss</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">COCO</a></td>
+<td align="center">48.1</td>
+<td align="center">0.0935</td>
+<td></td>
+<td>2020</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d">https://github.com/open-mmlab/mmdetection3d</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/blob/main/resources/mmdet3d-logo.png"><img src="https://github.com/open-mmlab/mmdetection3d/raw/main/resources/mmdet3d-logo.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<p><strong>OpenMMLab website</strong> <a target="_blank" rel="noopener" href="https://openmmlab.com/"><em>HOT</em> </a>   <strong>OpenMMLab platform</strong> <a target="_blank" rel="noopener" href="https://platform.openmmlab.com/"><em>TRY IT OUT</em></a></p>
+<p><a target="_blank" rel="noopener" href="https://mmdetection3d.readthedocs.io/en/latest/"><img src="https://camo.githubusercontent.com/d5d535f53f2cb047c2b4382b8fd3c2913519abad35badcd4f22bd45d174f450a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f646f63732d6c61746573742d626c7565" srcset="/img/loading.gif" lazyload alt="docs"></a> <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/actions"><img src="https://github.com/open-mmlab/mmdetection3d/workflows/build/badge.svg" srcset="/img/loading.gif" lazyload alt="badge"></a> <a target="_blank" rel="noopener" href="https://codecov.io/gh/open-mmlab/mmdetection3d"><img src="https://camo.githubusercontent.com/9d9dd5bbee06fe143d72c2a2f1907aaf74c2a68c716fcaa52e3cbcb9f8677033/68747470733a2f2f636f6465636f762e696f2f67682f6f70656e2d6d6d6c61622f6d6d646574656374696f6e33642f6272616e63682f6d61737465722f67726170682f62616467652e737667" srcset="/img/loading.gif" lazyload alt="codecov"></a> <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/aa0f4ed735ed4dbdbbc25ab552ee5d61089224d21ba1c545d7c16e0fa94da8d8/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6f70656e2d6d6d6c61622f6d6d646574656374696f6e33642e737667" srcset="/img/loading.gif" lazyload alt="license"></a></p>
+<h2 id="MMDetection3D"><a href="#MMDetection3D" class="headerlink" title="MMDetection3D"></a>MMDetection3D</h2><p>MMDetection3D is an open source object detection toolbox based on PyTorch, towards the next-generation platform for general 3D detection. It is a part of the OpenMMLab project developed by <a target="_blank" rel="noopener" href="http://mmlab.ie.cuhk.edu.hk/">MMLab</a>.（支持分布式训练和推理；it supports distributed training and inference.）</p>
+<p><img src="https://github.com/open-mmlab/mmdetection3d/raw/main/resources/mmdet3d_outdoor_demo.gif" srcset="/img/loading.gif" lazyload alt="demo image"></p>
+<h3 id="Major-features"><a href="#Major-features" class="headerlink" title="Major features"></a>Major features</h3><ul>
+<li><p><strong>Support multi-modality&#x2F;single-modality detectors out of box</strong></p>
+<p>It directly supports multi-modality(多模态)&#x2F;single-modality(单模态) detectors including MVXNet, VoteNet, PointPillars, etc.</p>
+</li>
+<li><p><strong>Support indoor&#x2F;outdoor 3D detection out of box</strong></p>
+<p>It directly supports popular indoor and outdoor 3D detection datasets, including ScanNet, SUNRGB-D, Waymo, nuScenes, Lyft, and KITTI. For nuScenes dataset, we also support <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/tree/latest/configs/nuimages">nuImages dataset</a>.</p>
+</li>
+<li><p><strong>Natural integration with 2D detection</strong></p>
+<p>All the about <strong>300+ models, methods of 40+ papers</strong>, and modules supported in <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection/blob/3.x/docs/en/model_zoo.md">MMDetection</a> can be trained or used in this codebase.</p>
+</li>
+<li><p><strong>High efficiency</strong></p>
+<p>It trains faster than other codebases. The main results are as below. Details can be found in <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection3d/blob/main/docs/en/notes/benchmarks.md">benchmark.md</a>. We compare the number of samples trained per second (the higher, the better). The models that are not supported by other codebases are marked by <code>✗</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>MMDetection3D</th>
+<th><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/OpenPCDet">OpenPCDet</a></th>
+<th><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/votenet">votenet</a></th>
+<th><a target="_blank" rel="noopener" href="https://github.com/poodarchu/Det3D">Det3D</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VoteNet</td>
+<td>358</td>
+<td>✗</td>
+<td>77</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>PointPillars-car</td>
+<td>141</td>
+<td>✗</td>
+<td>✗</td>
+<td>140</td>
+</tr>
+<tr>
+<td>PointPillars-3class</td>
+<td>107</td>
+<td>44</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>40</td>
+<td>30</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>Part-A2</td>
+<td>17</td>
+<td>14</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>Like <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection">MMDetection</a> and <a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmcv">MMCV</a>, MMDetection3D can also be used as a library to support different projects on top of it.</p>
+<h3 id="Benchmarks"><a href="#Benchmarks" class="headerlink" title="Benchmarks"></a>Benchmarks</h3><p>Here we benchmark the training and testing speed of models in MMDetection3D, with some other open source 3D detection codebases.</p>
+<h4 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h4><ul>
+<li>Hardwares: 8 NVIDIA Tesla V100 (32G) GPUs, Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz<br>Software: Python 3.7, CUDA 10.1, cuDNN 7.6.5, PyTorch 1.3, numba 0.48.0.</li>
+<li>Model: Since all the other codebases implements different models, we compare the corresponding models including SECOND, PointPillars, Part-A2, and VoteNet with them separately.</li>
+<li>Metrics: We use the average throughput in iterations of the entire training run and skip the first 50 iterations of each epoch to skip GPU warmup time.</li>
+</ul>
+<h4 id="Main-Results"><a href="#Main-Results" class="headerlink" title="Main Results"></a>Main Results</h4><p>We compare the training speed (samples&#x2F;s) with other codebases if they implement the similar models. The results are as below, <strong>the greater the numbers in the table, the faster of the training process</strong>. The models that are not supported by other codebases are marked by <code>×</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>MMDetection3D</th>
+<th>OpenPCDet</th>
+<th>votenet</th>
+<th>Det3D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VoteNet</td>
+<td>358</td>
+<td>×</td>
+<td>77</td>
+<td>×</td>
+</tr>
+<tr>
+<td>PointPillars-car</td>
+<td>141</td>
+<td>×</td>
+<td>×</td>
+<td>140</td>
+</tr>
+<tr>
+<td>PointPillars-3class</td>
+<td>107</td>
+<td>44</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>40</td>
+<td>30</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>Part-A2</td>
+<td>17</td>
+<td>14</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<p>In summary, MMdetection is a toolbox for object detection, MMCV is a foundation library(基础库) for computer vision research that supports MMDetection, and MMDetection3D is an extension of MMDetection for 3D object detection and tracking.</p>
+<p>总之，MMDetection是一个物体检测的工具箱，MMCV是一个支持MMDetection的计算机视觉研究的基础库，而MMDetection3D是MMDetection的扩展，用于3D物体检测和跟踪。</p>
+<h3 id="Verify-the-installation"><a href="#Verify-the-installation" class="headerlink" title="Verify the installation"></a>Verify the installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># single-gpu testing</span><br>python tools/test.py <span class="hljs-variable">$&#123;CONFIG_FILE&#125;</span> <span class="hljs-variable">$&#123;CHECKPOINT_FILE&#125;</span> [--cfg-options test_evaluator.pklfile_prefix=<span class="hljs-variable">$&#123;RESULT_FILE&#125;</span>]  [--show] [--show-dir <span class="hljs-variable">$&#123;SHOW_DIR&#125;</span>]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># e.g.</span><br>python demo/pcd_demo.py demo/data/kitti/000008.bin pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car.py hv_pointpillars_secfpn_6x8_160e_kitti-3d-car_20220331_134606-d42d15ed.pth --show<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">python tools<span class="hljs-regexp">/test.py configs/</span>votenet<span class="hljs-regexp">/votenet_8xb8_scannet-3d.py checkpoints/</span>votenet_8x8_scannet-<span class="hljs-number">3</span>d-<span class="hljs-number">18</span>class_20200620_230238-<span class="hljs-number">2</span>cea9c3a.pth --show --show-dir .<span class="hljs-regexp">/data/</span>scannet/show_results<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+VoteNet </p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+PointPillars</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+SECOND</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Part-A2</p>
+</li>
+</ul>
+<h3 id="雷达参数"><a href="#雷达参数" class="headerlink" title="雷达参数"></a>雷达参数</h3><blockquote>
+<p>目前大车使用的镭神智能的雷达参数</p>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/v2-c37643d43854f555e89cc3f3e5aae138_r.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<blockquote>
+<p>测绘激光雷达三维测绘激光雷达 MS-C16</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">大场景快速建模</th>
+<th align="center">近程高精建图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://www.leishen-lidar.com/public/attachment/images/20210525/833cf8d7b65d2925469d07b584a1eee2.jpg" srcset="/img/loading.gif" lazyload alt="img"></td>
+<td align="center"><img src="https://www.leishen-lidar.com/public/attachment/images/20210525/ec827ed4b51ce3d2c38122cf071dcde5.jpg" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>镭神智能128 线混合固态激光雷达 CH128 效果</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">非机动车</th>
+<th align="center">轿车</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://www.leishen-lidar.com/public/attachment/images/20210430/e8cddbf06dc62fd428b3c514568733c0.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:25%;" /></td>
+<td align="center"><img src="https://www.leishen-lidar.com/public/attachment/images/20210430/d375483090b6c825e5db230913d94b5c.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:25%;" /></td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/notebook/" class="category-chain-item">notebook</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Autopilot/" class="print-no-link">#Autopilot</a>
+      
+        <a href="/tags/object-detection/" class="print-no-link">#object detection</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MMDetection &amp; object detection方面的调研</div>
+      <div>http://example.com/2023/10/08/MMDetection/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Qisong He</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/08/PointPillars/" title="PointPillars 论问笔记">
+                        <span class="hidden-mobile">PointPillars 论问笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
