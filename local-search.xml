@@ -4,6 +4,64 @@
   
   
   <entry>
+    <title>ISS_SLAM_TUTORIAL</title>
+    <link href="/2023/10/09/ISS_SLAM_TUTORIAL/"/>
+    <url>/2023/10/09/ISS_SLAM_TUTORIAL/</url>
+    
+    <content type="html"><![CDATA[<h3 id="ISS-SLAM-TUTORIAL"><a href="#ISS-SLAM-TUTORIAL" class="headerlink" title="ISS_SLAM_TUTORIAL"></a>ISS_SLAM_TUTORIAL</h3><h4 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h4><h5 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a>Mapping</h5><ol><li>Connect to ISS self-driving car through ssh using vscode</li></ol><ul><li><p>Step1:<br>Create a new terminal(ctrl+alt+t), then type <code>code .</code></p></li><li><p>Step2:</p><ul><li>Open Remote Explorer</li><li>Open new folder</li><li>Choice yahboom_ws</li><li>Create a new terminal in vscode through<code>roslaunch yahboomcar_nav 3d_laser_astrapro_bringup_and_slam.launch </code></li><li>Wait 15s</li><li><img src="/img/figure/ISS_SLAM_TUTORIAL_1.png" alt="image-20230511163034203"></li></ul></li></ul><ol start="2"><li>Display rviz on the local terminal</li></ol><ul><li><p>step1: </p><ul><li>Create a new terminal(ctrl+shift+&#96;)in vscode</li></ul></li><li><p>step2:</p><ul><li><code>cd Documents/yahboomcar_ws</code></li><li><code>source devel/setup.bash</code></li><li><code>roslaunch yahboomcar_nav view_cartographer.launch</code></li></ul></li><li><p>step3:</p><ul><li><p>Mapping with the remote</p></li><li><p><img src="/img/figure/ISS_SLAM_TUTORIAL_2.png" alt="image-20230511163103365"></p></li></ul></li></ul><p>———shut down all terminal———</p><h5 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h5><ol><li>Connect to ISS self-driving car through ssh using vscode</li></ol><ul><li><p>Step1:<br>Create a new terminal(ctrl+alt+t), then type <code>code .</code></p></li><li><p>Step2:</p><ul><li>Open Remote Explorer</li><li>Open new folder</li><li>Choice yahboom_ws</li><li>Create a new terminal in vscode through<code>roslaunch yahboomcar_nav 3d_laser_astrapro_bringup_and_navigation.launch </code></li><li>Wait 15s</li></ul></li></ul><ol start="2"><li>Display rviz on the local terminal</li></ol><ul><li>step1: <ul><li>Create a new terminal(ctrl+shift+&#96;)in vscode</li></ul></li><li>step2:<ul><li><code>cd Documents/yahboomcar_ws</code></li><li><code>source devel/setup.bash</code></li><li><code>roslaunch yahboomcar_nav view_cartographer.launch</code></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>tutorial</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Autopilot</tag>
+      
+      <tag>ROS</tag>
+      
+      <tag>SLAM</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LIO-SAM environment configuration(Linux 20.04; ROS Noetic)</title>
+    <link href="/2023/10/09/LIO-SAM/"/>
+    <url>/2023/10/09/LIO-SAM/</url>
+    
+    <content type="html"><![CDATA[<h1 id="LIO-SAM-environment-configuration-Linux-20-04-ROS-Noetic"><a href="#LIO-SAM-environment-configuration-Linux-20-04-ROS-Noetic" class="headerlink" title="LIO-SAM environment configuration(Linux 20.04; ROS Noetic)"></a>LIO-SAM environment configuration(Linux 20.04; ROS Noetic)</h1><ol><li><p>Make sure you have installed ROS completely</p></li><li><p>Install <code>gtsam</code> from official <a href="https://github.com/borglab/gtsam#wrappers">github</a></p></li></ol><blockquote><p>I am highly recommend you to install from Releases(The version I downloaded is <a href="https://github.com/borglab/gtsam/releases/tag/4.1.1">4.1.1</a>)</p></blockquote><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># <span class="hljs-built_in">cd</span> to address where you download gtsam<br>$ <span class="hljs-built_in">cd</span> ~/gtsam-<span class="hljs-number">4</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span><br>$ <span class="hljs-built_in">mkdir</span> build &amp;&amp; <span class="hljs-built_in">cd</span> build<br>$ cmake -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF -DGTSAM_USE_SYSTEM_EIGEN=ON ..<br>$ sudo make -j8<br>$ sudo make install<br></code></pre></td></tr></table></figure><ol start="3"><li>create workspace<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">$ <span class="hljs-built_in">mkdir</span> -p ~/catkin_ws/src<br>$ <span class="hljs-built_in">cd</span> ~/catkin_ws/src<br>$ git clone https://github.com/TixiaoShan/LIO-SAM.git<br>$ <span class="hljs-built_in">cd</span> ..<br>$ catkin_make<br></code></pre></td></tr></table></figure></li></ol><h1 id="problems-solutions"><a href="#problems-solutions" class="headerlink" title="problems&amp;solutions"></a>problems&amp;solutions</h1><p>Q1:</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">fatal error: opencv/cv.h: No such file or directory<br></code></pre></td></tr></table></figure><p>A1:</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># ubuntu20.<span class="hljs-number">04</span> install opencv4.<span class="hljs-number">2</span> by default, so we should change ~/include/utility.h<br></code></pre></td></tr></table></figure><ul><li><p>step1:<br>use <code>#include &lt;opencv2/opencv.hpp&gt;</code> instead of <code>#include &lt;opencv/cv.h&gt;</code>  in <code>utility.h</code></p></li><li><p>step2:<br>move<code>#include &lt;pcl/kdtree/kdtree_flann.h&gt;</code>in front of <code>#include &lt;opencv2/opencv.hpp&gt;</code></p></li></ul><p>Q2:</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/usr/include/pcl-<span class="hljs-number">1</span>.<span class="hljs-number">10</span>/pcl/pcl_config.h:<span class="hljs-number">7</span>:<span class="hljs-number">4</span>: error: #error PCL requires C++<span class="hljs-number">14</span> or above<br></code></pre></td></tr></table></figure><p>A2:<br>it mean that PCL 1.10 require C++14 or higher<br>open<code>CMakeLists.txt</code>,  change <code>set(CMAKE_CXX_FLAGS &quot;-std=c++11&quot;)</code>  to <code>set(CMAKE_CXX_FLAGS &quot;-std=c++14&quot;)</code></p><p>Q3:</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">error while loading shared libraries: libmetis-gtsam.so: cannot open shared object file<br></code></pre></td></tr></table></figure><p>A3:<br>after installing gtsam, you’d better run <code>sudo ldconfig</code>, in order to update link settings<br>then, init workspace, run <code>catkin_make</code>again</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>tutorial</category>
+      
+      <category>Environment configuration</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Autopilot</tag>
+      
+      <tag>ROS Noetic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MMDetection &amp; object detection方面的调研</title>
     <link href="/2023/10/08/MMDetection/"/>
     <url>/2023/10/08/MMDetection/</url>
