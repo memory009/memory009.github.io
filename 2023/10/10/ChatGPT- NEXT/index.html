@@ -16,24 +16,30 @@
   <meta name="author" content="Qisong He">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CARLA-installation (for windows)Thanks for Mr. Wu Sihao and Mr. Li Renjue’s contribution to this installation tutorial!Knowing that most people are not very familiar with the Linux system, but they wa">
+    <meta name="description" content="ChatGPT-NEXT 部署到个人域名 - tutorial ​	此教程使用ChatGPT-NEXT（简单理解为通过ChatGPT的API服务，将问的问题转发到ChatGPT，实现在个人域名下体验大部分ChatGPT服务）提供的教程，使用免费服务器vercel部署ChatGPT，使个人域名通过DNS（Domain Name System），将ChatGPT-NEXT映射到自己的个人域名的子域名下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CARLA-installation (for windows)">
-<meta property="og:url" content="http://example.com/2023/10/10/CARLA-installation-(for-windows)/index.html">
+<meta property="og:title" content="ChatGPT 部署到个人域名，实现国内直接访问">
+<meta property="og:url" content="http://example.com/2023/10/10/ChatGPT-%20NEXT/index.html">
 <meta property="og:site_name" content="Cheeson&#39;s Blog">
-<meta property="og:description" content="CARLA-installation (for windows)Thanks for Mr. Wu Sihao and Mr. Li Renjue’s contribution to this installation tutorial!Knowing that most people are not very familiar with the Linux system, but they wa">
+<meta property="og:description" content="ChatGPT-NEXT 部署到个人域名 - tutorial ​	此教程使用ChatGPT-NEXT（简单理解为通过ChatGPT的API服务，将问的问题转发到ChatGPT，实现在个人域名下体验大部分ChatGPT服务）提供的教程，使用免费服务器vercel部署ChatGPT，使个人域名通过DNS（Domain Name System），将ChatGPT-NEXT映射到自己的个人域名的子域名下">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-10T01:29:07.793Z">
-<meta property="article:modified_time" content="2023-10-10T01:32:15.753Z">
+<meta property="og:image" content="http://example.com/img/figure/chat_demo.png">
+<meta property="og:image" content="http://example.com/img/figure/vercel.png">
+<meta property="og:image" content="http://example.com/img/figure/godaddy_2.png">
+<meta property="og:image" content="http://example.com/img/figure/Cloudflare.png">
+<meta property="article:published_time" content="2023-10-10T08:17:24.355Z">
+<meta property="article:modified_time" content="2023-10-09T12:12:38.298Z">
 <meta property="article:author" content="Qisong He">
-<meta property="article:tag" content="CARLA">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="domains">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/figure/chat_demo.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>CARLA-installation (for windows)Cheeson&#39;s BlogCheeson&#39;s Blog</title>
+  <title>ChatGPT 部署到个人域名，实现国内直接访问Cheeson&#39;s BlogCheeson&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CARLA-installation (for windows)"></span>
+            <span id="subtitle" data-typed-text="ChatGPT 部署到个人域名，实现国内直接访问"></span>
           
         </div>
 
@@ -210,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-10 09:29" pubdate>
-          2023年10月10日 上午
+        <time datetime="2023-10-10 16:17" pubdate>
+          2023年10月10日 下午
         </time>
       </span>
     
@@ -222,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.5k 字
         
       </span>
     
@@ -233,7 +239,7 @@
         
         
         
-          14 分钟
+          22 分钟
         
       </span>
     
@@ -278,28 +284,142 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CARLA-installation (for windows)</h1>
+            <h1 id="seo-header">ChatGPT 部署到个人域名，实现国内直接访问</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="CARLA-installation-for-windows"><a href="#CARLA-installation-for-windows" class="headerlink" title="CARLA-installation (for windows)"></a>CARLA-installation (for windows)</h1><h2 id="Thanks-for-Mr-Wu-Sihao-and-Mr-Li-Renjue’s-contribution-to-this-installation-tutorial"><a href="#Thanks-for-Mr-Wu-Sihao-and-Mr-Li-Renjue’s-contribution-to-this-installation-tutorial" class="headerlink" title="Thanks for Mr. Wu Sihao and Mr. Li Renjue’s contribution to this installation tutorial!"></a>Thanks for <a target="_blank" rel="noopener" href="https://github.com/WilliamWu96">Mr. Wu Sihao</a> and Mr. Li Renjue’s contribution to this installation tutorial!</h2><p>Knowing that most people are not very familiar with the Linux system, but they want to try to get in touch with the field of autonomous driving, so I will share the method of installing carla under windows here, hoping to help some people who want to learn how to get started with carla but don’t know how to configure it.  </p>
-<p><strong>I highly recommend you to use python&#x3D;3.7 if you want to use CARLA-0.9.13.</strong>  </p>
-<p><strong>please pay attention，the version of CARLA-0.9.10 recommend us to use python&#x3D;3.6</strong></p>
-<h2 id="Install-CARLA"><a href="#Install-CARLA" class="headerlink" title="Install CARLA"></a>Install CARLA</h2><h3 id="references"><a href="#references" class="headerlink" title="references:"></a>references:</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/WilliamWu96/</span>Carla_Installation<span class="hljs-comment">#desktop-version-installation</span><br>https:<span class="hljs-regexp">//</span>zhuanlan.zhihu.com<span class="hljs-regexp">/p/</span><span class="hljs-number">338927297</span><br>https:<span class="hljs-regexp">//</span>zhuanlan.zhihu.com<span class="hljs-regexp">/p/</span><span class="hljs-number">390143776</span><br></code></pre></td></tr></table></figure>
-<h3 id="1-Install-CARLA-0-9-13-CARLA-0-9-10"><a href="#1-Install-CARLA-0-9-13-CARLA-0-9-10" class="headerlink" title="1.Install CARLA-0.9.13&#x2F;CARLA-0.9.10"></a>1.Install CARLA-0.9.13&#x2F;CARLA-0.9.10</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/carla-simulator/carla/releases">https://github.com/carla-simulator/carla/releases</a> </li>
-<li>chose [Windows] CARLA<your version>.zip and download it.</li>
-</ul>
-<h3 id="2-unzip-the-file"><a href="#2-unzip-the-file" class="headerlink" title="2.unzip the file"></a>2.unzip the file</h3><h3 id="3-Run-CarlaUESTC4-exe"><a href="#3-Run-CarlaUESTC4-exe" class="headerlink" title="3.Run CarlaUESTC4.exe"></a>3.Run CarlaUESTC4.exe</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">#if you want <span class="hljs-keyword">to</span> use carla-<span class="hljs-number">0.9</span>.<span class="hljs-number">10</span>,please use <span class="hljs-keyword">python</span>=<span class="hljs-number">3.6</span> instead <span class="hljs-keyword">python</span>=<span class="hljs-number">3.7</span><br>conda create -n carla <span class="hljs-keyword">python</span>=<span class="hljs-number">3.7</span><br>conda activate carla<br><span class="hljs-keyword">cd</span> ~/PythonAPI/examples<br><span class="hljs-keyword">python</span> automatic_control.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
-<h2 id="Issure"><a href="#Issure" class="headerlink" title="Issure"></a>Issure</h2><ul>
-<li>If your terminal show that <code>no module named numpy</code>or<code>no module named shapely</code>or<code>no module named pygame</code> , please install them using pip:<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">pip <span class="hljs-keyword">install </span>numpy<br>pip <span class="hljs-keyword">install </span><span class="hljs-keyword">shapely</span><br><span class="hljs-keyword"></span>pip <span class="hljs-keyword">install </span>pygame<br></code></pre></td></tr></table></figure></li>
-<li>If your terminal show that  <code>no module named carla</code> , please:<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cd</span> ~/PythonAPI/carla/dist<br><span class="hljs-comment">#if you use carla-0.9.10,you will find a similar .whl named carla-0.9.10-cp36-cp36m-win_amd64.whl</span><br><span class="hljs-attribute">pip</span> install carla-<span class="hljs-number">0</span>.<span class="hljs-number">9</span>.<span class="hljs-number">13</span>-cp37-cp37m-win_amd64.whl<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">#if you prefer <span class="hljs-keyword">to</span> use carla-<span class="hljs-number">0.9</span>.<span class="hljs-number">10</span>,please use <span class="hljs-keyword">python</span>=<span class="hljs-number">3.6</span> instead <span class="hljs-keyword">python</span>=<span class="hljs-number">3.7</span><br>conda create -n carla <span class="hljs-keyword">python</span>=<span class="hljs-number">3.7</span><br>conda activate carla<br><span class="hljs-keyword">cd</span> ~/PythonAPI/examples<br><span class="hljs-keyword">python</span> automatic_control.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
+                <h1 id="ChatGPT-NEXT-部署到个人域名-tutorial"><a href="#ChatGPT-NEXT-部署到个人域名-tutorial" class="headerlink" title="ChatGPT-NEXT 部署到个人域名 - tutorial"></a>ChatGPT-NEXT 部署到个人域名 - tutorial</h1><blockquote>
+<p>​	此教程使用ChatGPT-NEXT（简单理解为通过ChatGPT的API服务，将问的问题转发到ChatGPT，实现在个人域名下体验大部分ChatGPT服务）提供的教程，使用免费服务器<code>vercel</code>部署ChatGPT，使个人域名通过DNS（Domain Name System），将ChatGPT-NEXT映射到自己的个人域名的子域名下。</p>
+</blockquote>
+<p>​		&#x3D;&#x3D;达到在国内访问ChatGPT-NEXT的目的。&#x3D;&#x3D;</p>
+<blockquote>
+<p>​	这个方案配置的优势在于：</p>
+<pre><code class="hljs">- 更方便：使用个人域名访问，不需要“科学上网”
+- 更安全：配置好之后，可以通过加入密码的方式，防止个人域名遭到DDOS攻击
+- 更便捷：方便分享给家人好友使用，只需要OpenAI秘钥没有额度的时候进行额度充值
+- 更低成本：成本极低（域名 + OpenAI秘钥 &lt; 30RMB）
+</code></pre>
+</blockquote>
+<blockquote>
+<p> 话不多说，先上效果图<br><img src="/img/figure/chat_demo.png" srcset="/img/loading.gif" lazyload alt="demo"></p>
+</blockquote>
+<h2 id="在-Github中fork-ChatGPT-Next-Web"><a href="#在-Github中fork-ChatGPT-Next-Web" class="headerlink" title="在 Github中fork  ChatGPT-Next-Web"></a>在 Github中fork  <a target="_blank" rel="noopener" href="https://github.com/Yidadaa/ChatGPT-Next-Web">ChatGPT-Next-Web</a></h2><blockquote>
+<p> ChatGPT-Next-Web的优势</p>
+</blockquote>
 <ul>
-<li>If you see a window named pygame like this picture , you have fully installed carla environment！！<br><a target="_blank" rel="noopener" href="https://pic3.zhimg.com/v2-7e4f82bba4c5f6bcf3a96736dfac77c2_b.jpg">CARLA example</a></li>
+<li><p><strong>Deploy for free with one-click</strong> on Vercel in under 1 minute</p>
+</li>
+<li><p>Compact client (~5MB) on Linux&#x2F;Windows&#x2F;MacOS, <a target="_blank" rel="noopener" href="https://github.com/Yidadaa/ChatGPT-Next-Web/releases">download it now</a></p>
+</li>
+<li><p>Fully compatible with self-deployed llms, recommended for use with <a target="_blank" rel="noopener" href="https://github.com/josStorer/RWKV-Runner">RWKV-Runner</a> or <a target="_blank" rel="noopener" href="https://github.com/go-skynet/LocalAI">LocalAI</a></p>
+</li>
+<li><p>Privacy first, all data stored locally in the browser</p>
+</li>
+<li><p>Markdown support: LaTex, mermaid, code highlight, etc.</p>
+</li>
+<li><p>Responsive design, dark mode and PWA</p>
+</li>
+<li><p>Fast first screen loading speed (~100kb), support streaming response</p>
+</li>
+<li><p>New in v2: create, share and debug your chat tools with prompt templates (mask)</p>
+</li>
+<li><p>Awesome prompts powered by <a target="_blank" rel="noopener" href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh">awesome-chatgpt-prompts-zh</a> and <a target="_blank" rel="noopener" href="https://github.com/f/awesome-chatgpt-prompts">awesome-chatgpt-prompts</a></p>
+</li>
+<li><p>Automatically compresses chat history to support long conversations while also saving your tokens</p>
+</li>
+<li><p>I18n: English, 简体中文, 繁体中文, 日本語, Français, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia</p>
+</li>
+<li><p>按照README.md的内容deploy到自己的仓库，并开启自动更新(由于官方讲的非常清楚，以下不做赘述)</p>
+</li>
 </ul>
+<h2 id="购买一个个人域名-申请一个个人域名："><a href="#购买一个个人域名-申请一个个人域名：" class="headerlink" title="购买一个个人域名&#x2F;申请一个个人域名："></a>购买一个个人域名&#x2F;申请一个个人域名：</h2><ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+在<a target="_blank" rel="noopener" href="https://www.godaddy.com/">goddy</a>直接买一个</p>
+<ul>
+<li><p>建议直接整<code>.xyz</code>,<code>.lol</code>之类的域名，比较便宜，十几块钱一年是正常价格，太贵也没必要</p>
+</li>
+<li><p>申请完成后，使用goddy自带的DNS服务或者<a href="#choice">其他DNS服务</a>对域名进行配置</p>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+阿里云&#x2F;腾讯云申请一个（比较麻烦，并且需要实名制）</p>
+</li>
+</ul>
+<h2 id="在vercel中添加个人域名，具体步骤如下："><a href="#在vercel中添加个人域名，具体步骤如下：" class="headerlink" title="在vercel中添加个人域名，具体步骤如下："></a>在<a target="_blank" rel="noopener" href="https://vercel.com/memory009">vercel</a>中添加个人域名，具体步骤如下：</h2><ul>
+<li><p>Settings</p>
+</li>
+<li><p>Domains</p>
+</li>
+<li><p>Add</p>
+</li>
+<li><p>输入域名</p>
+</li>
+<li><p><img src="/img/figure/vercel.png" srcset="/img/loading.gif" lazyload alt="image-20230527002240186"></p>
+</li>
+<li><p><code>type</code>选择<code>CNAME</code>，<code>Name</code>可以自己命名，此处Name为子域名，只要不和其他Name重复即可，<code>Value</code>中的值需要记下来，之后要填到DNS的值的位置</p>
+</li>
+</ul>
+<h2 id="购买-注册OpenAI账号"><a href="#购买-注册OpenAI账号" class="headerlink" title="购买&#x2F;注册OpenAI账号"></a>购买&#x2F;注册OpenAI账号</h2><ul>
+<li><p>这个网上很多方法，我不好推荐</p>
+</li>
+<li><p>一个OpenAI账号大概有三个月有效期的免费额度，过期之后需要配置秘钥，以下是在<code>vercel</code>更换秘钥，并重新部署的方法</p>
+<ul>
+<li>进入<a target="_blank" rel="noopener" href="https://vercel.com/memory009">vercel</a></li>
+<li>chat-gpt-next-web</li>
+<li>Settings</li>
+<li>Environment Variables</li>
+<li>edit</li>
+<li>修改秘钥</li>
+<li>切换到<code>Deployments</code>标签，redeploy你的vercel服务器，注：每次更新秘钥或者密码都需要手动redeploy，使vercel新的配置生效</li>
+</ul>
+</li>
+</ul>
+<h2 id="添加DNS信息"><a href="#添加DNS信息" class="headerlink" title="添加DNS信息"></a>添加DNS信息</h2><ul>
+<li>如果使用的是godaddy的DNS服务，则添加DNS信息，使得vercel和域名信息保持一致，这样做的目的是为了让访问个人域名的时候，服务器会将你的域名指向vercel的位置，达到不适用VPN访问外网的效果</li>
+</ul>
+<p><img src="/img/figure/godaddy_2.png" srcset="/img/loading.gif" lazyload alt="image-20230527023639457"></p>
+<ul>
+<li>注意:首次注册的域名需要先广播到全球，这可能需要几个小时的时间</li>
+</ul>
+<p><a name="choice"></a></p>
+<h2 id="使用CDN加速服务-可选"><a href="#使用CDN加速服务-可选" class="headerlink" title="使用CDN加速服务(可选)"></a>使用CDN加速服务(可选)</h2><blockquote>
+<p>目前貌似有不法分子用<code>vercel</code>来搞非法的东西，vercel 的IP是不是会被国内ban掉，以下方法使用<a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">cloudflare</a>对DNS进行管理，启用Proxy服务（说人话就是代理服务），使国内能通过CDN的优势，访问到</p>
+</blockquote>
+<ul>
+<li><p>CDN服务是什么？</p>
+<ul>
+<li>CDN（内容分发网络）是一种网络服务，旨在通过将内容分发到全球各地的服务器节点上，提供快速、高效的内容传输和交付。CDN的目标是在用户请求内容时，从距离用户最近的服务器节点提供内容，以减少延迟和提高性能。</li>
+<li>CDN通过在全球各地建立分布式的服务器节点，将内容缓存到这些节点上。当用户请求访问特定的内容时，CDN会自动将内容从最近的服务器节点传送给用户，而不需要从原始服务器上获取内容。这样可以大大减少网络延迟和带宽消耗，提高用户访问网站或应用程序的速度和质量。</li>
+</ul>
+</li>
+<li><p>CDN服务有什么优势，为什么要用它？</p>
+<ul>
+<li><p>加速内容传输：通过就近提供内容，减少了网络延迟，提高了内容传输速度。</p>
+</li>
+<li><p>节省带宽成本：CDN可以缓存和提供静态内容，减少了原始服务器的负载和带宽消耗。</p>
+</li>
+<li><p>提高可靠性和稳定性：CDN通过分布式架构和冗余备份，提供了更高的可用性和容错性。</p>
+</li>
+<li><p>抵御分布式拒绝服务（DDoS）攻击：CDN可以通过分散流量和提供防护措施来帮助抵御DDoS攻击。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>解释完CDN服务的概念之后，以下是使用cloudflare配置DNS的教程</p>
+<ul>
+<li>将Nameservers修改为Cloudflare Nameservers<ul>
+<li><p>关掉原来在godaddy上的DNS服务</p>
+</li>
+<li><p>将godaddy上的Nameservers替换为Cloudflare提供的Nameservers</p>
+</li>
+<li><p>将原本的DNS配置全部复制到Cloudflare上即可</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/figure/Cloudflare.png" srcset="/img/loading.gif" lazyload alt="image-20230527023639457"></p>
 
                 
               </div>
@@ -321,13 +441,6 @@
   <a href="/categories/tutorial/" class="category-chain-item">tutorial</a>
   
   
-    <span>></span>
-    
-  <a href="/categories/tutorial/Environment-configuration/" class="category-chain-item">Environment configuration</a>
-  
-  
-
-  
 
       </span>
     
@@ -340,7 +453,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CARLA/" class="print-no-link">#CARLA</a>
+        <a href="/tags/ChatGPT/" class="print-no-link">#ChatGPT</a>
+      
+        <a href="/tags/domains/" class="print-no-link">#domains</a>
       
     </div>
   
@@ -352,8 +467,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CARLA-installation (for windows)</div>
-      <div>http://example.com/2023/10/10/CARLA-installation-(for-windows)/</div>
+      <div>ChatGPT 部署到个人域名，实现国内直接访问</div>
+      <div>http://example.com/2023/10/10/ChatGPT- NEXT/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +486,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年10月10日</div>
+          <div>2023年10月9日</div>
         </div>
       
       
@@ -402,18 +517,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/10/ChatGPT-%20NEXT/" title="ChatGPT 部署到个人域名，实现国内直接访问">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ChatGPT 部署到个人域名，实现国内直接访问</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/09/ISS_SLAM_TUTORIAL/" title="ISS_SLAM_TUTORIAL">
-                        <span class="hidden-mobile">ISS_SLAM_TUTORIAL</span>
+                      <a href="/2023/10/10/CARLA-installation-(for-windows)/" title="CARLA-installation (for windows)">
+                        <span class="hidden-mobile">CARLA-installation (for windows)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
