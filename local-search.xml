@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>创建ROS工作空间</title>
+    <link href="/2024/01/26/%E5%88%9B%E5%BB%BAROS%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4/"/>
+    <url>/2024/01/26/%E5%88%9B%E5%BB%BAROS%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4/</url>
+    
+    <content type="html"><![CDATA[<h2 id="创建ROS工作空间"><a href="#创建ROS工作空间" class="headerlink" title="创建ROS工作空间"></a>创建ROS工作空间</h2><p>ROS中的程序即便使用不同的编程语言，实现流程也大致类似，以当前HelloWorld程序为例，实现流程大致如下：</p><ol><li>先创建一个工作空间；</li><li>再创建一个功能包；</li><li>编辑源文件；</li><li>编辑配置文件；</li><li>编译并执行。</li></ol><p>上述流程中，C++和Python只是在步骤3和步骤4的实现细节上存在差异，其他流程基本一致。先实现C++和Python程序编写的通用部分步骤1与步骤2</p><h4 id="1-创建工作空间并初始化"><a href="#1-创建工作空间并初始化" class="headerlink" title="1.创建工作空间并初始化"></a>1.创建工作空间并初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p 自定义空间名称/src<br><span class="hljs-built_in">cd</span> 自定义空间名称<br>catkin_make<br></code></pre></td></tr></table></figure><p>上述命令，首先会创建一个工作空间以及一个 src 子目录，然后再进入工作空间调用 catkin_make命令编译。</p><h4 id="2-进入-src-创建-ros-包并添加依赖"><a href="#2-进入-src-创建-ros-包并添加依赖" class="headerlink" title="2.进入 src 创建 ros 包并添加依赖"></a>2.进入 src 创建 ros 包并添加依赖</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> src<br>catkin_create_pkg 自定义ROS包名 roscpp rospy std_msgs<br></code></pre></td></tr></table></figure><p>上述命令，会在工作空间下生成一个功能包，该功能包依赖于 roscpp、rospy 与 std_msgs，其中roscpp是使用C++实现的库，而rospy则是使用python实现的库，std_msgs是标准消息库，创建ROS功能包时，一般都会依赖这三个库实现。</p><hr><p><strong>注意:</strong> 在ROS中，虽然实现同一功能时，C++和Python可以互换，但是具体选择哪种语言，需要视需求而定，因为两种语言相较而言:C++运行效率高但是编码效率低，而Python则反之，基于二者互补的特点，ROS设计者分别设计了roscpp与rospy库，前者旨在成为ROS的高性能库，而后者则一般用于对性能无要求的场景，旨在提高开发效率。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>tutorial</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ROS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ROS中添加自定义python脚本</title>
+    <link href="/2024/01/26/ROS%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89python%E8%84%9A%E6%9C%AC/"/>
+    <url>/2024/01/26/ROS%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89python%E8%84%9A%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<h3 id="HelloWorld-Python版"><a href="#HelloWorld-Python版" class="headerlink" title="HelloWorld(Python版)"></a>HelloWorld(Python版)</h3><h4 id="1-进入-ros-包添加-scripts-目录并编辑-python-文件"><a href="#1-进入-ros-包添加-scripts-目录并编辑-python-文件" class="headerlink" title="1.进入 ros 包添加 scripts 目录并编辑 python 文件"></a>1.进入 ros 包添加 scripts 目录并编辑 python 文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ros包<br><span class="hljs-built_in">mkdir</span> scripts<br></code></pre></td></tr></table></figure><p>新建 python 文件: (文件名自定义)</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#! /usr/bin/env python</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Python 版 HelloWorld</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">import</span> rospy<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    rospy.init_node(<span class="hljs-string">&quot;Hello&quot;</span>)<br>    rospy.loginfo(<span class="hljs-string">&quot;Hello World!!!!&quot;</span>)<br></code></pre></td></tr></table></figure><h4 id="2-为-python-文件添加可执行权限"><a href="#2-为-python-文件添加可执行权限" class="headerlink" title="2.为 python 文件添加可执行权限"></a>2.为 python 文件添加可执行权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x 自定义文件名.py<br></code></pre></td></tr></table></figure><h4 id="3-编辑-ros-包下的-CamkeList-txt-文件"><a href="#3-编辑-ros-包下的-CamkeList-txt-文件" class="headerlink" title="3.编辑 ros 包下的 CamkeList.txt 文件"></a>3.编辑 ros 包下的 CamkeList.txt 文件</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">catkin_install_python</span>(PROGRAMS scripts/自定义文件名.py<br>  DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;<br>  )<br></code></pre></td></tr></table></figure><h4 id="4-进入工作空间目录并编译"><a href="#4-进入工作空间目录并编译" class="headerlink" title="4.进入工作空间目录并编译"></a>4.进入工作空间目录并编译</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 自定义空间名称<br>catkin_make<br></code></pre></td></tr></table></figure><h4 id="5-进入工作空间目录并执行"><a href="#5-进入工作空间目录并执行" class="headerlink" title="5.进入工作空间目录并执行"></a>5.进入工作空间目录并执行</h4><p><strong>先启动命令行1：</strong></p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">roscore</span><br></code></pre></td></tr></table></figure><p><strong>再启动命令行2：</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 工作空间<br><span class="hljs-built_in">source</span> ./devel/setup.bash<br>rosrun 包名 自定义文件名.py            <br></code></pre></td></tr></table></figure><p>输出结果:<code>Hello World!!!!</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>tutorial</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ROS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>git的部分命令用法 --补充</title>
     <link href="/2024/01/08/git%E7%9A%84%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95/"/>
     <url>/2024/01/08/git%E7%9A%84%E9%83%A8%E5%88%86%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95/</url>
