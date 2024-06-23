@@ -4,33 +4,6 @@
   
   
   <entry>
-    <title>Comparison of Autonomous Driving Simulator</title>
-    <link href="/2024/06/23/Use%20and%20comparison%20of%20Autonomous%20driving%20simulator/"/>
-    <url>/2024/06/23/Use%20and%20comparison%20of%20Autonomous%20driving%20simulator/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Comparison-of-Autonomous-Driving-Simulator"><a href="#Comparison-of-Autonomous-Driving-Simulator" class="headerlink" title="Comparison of Autonomous Driving Simulator:"></a>Comparison of Autonomous Driving Simulator:</h1><h2 id="CARLA"><a href="#CARLA" class="headerlink" title="CARLA:"></a>CARLA:</h2><ul><li>Compatibility: CARLA supports both ROS1 and ROS2 and provides corresponding ROS interfaces, making integration with ROS relatively easy.</li><li>Ease of use: CARLA offers rich documentation and example code, allowing users to get started quickly. It also has a visual interface for convenient setup and monitoring of simulation experiments.</li><li>Map data details: CARLA’s map data has high realism and details, including road signs, traffic lights, pedestrians, vehicles, and other elements, providing a more realistic simulation environment.</li></ul><p>  Pros: Strong realism, rich map details, good ROS compatibility.<br>  Cons: Higher computational resource requirements, relatively steep learning curve.</p><h2 id="BeamNG"><a href="#BeamNG" class="headerlink" title="BeamNG:"></a>BeamNG:</h2><ul><li>Compatibility: BeamNG primarily supports ROS1, with relatively weaker support for ROS2.</li><li>Ease of use: BeamNG has an intuitive user interface and an easy-to-use editor, allowing users to create and modify scenes conveniently. It also provides a Python API for integration with ROS.</li><li>Map data details: BeamNG’s map data is relatively simple, focusing mainly on vehicle physics simulation and collision detection, potentially lacking in detail-oriented simulation.</li></ul><p>  Pros: Accurate physics simulation, ease of use and scene editing.<br>  Cons: Relatively simple map details, incomplete support for ROS2.</p><h2 id="LGSVL"><a href="#LGSVL" class="headerlink" title="LGSVL:"></a>LGSVL:</h2><ul><li>Compatibility: LGSVL supports both ROS1 and ROS2 and provides ROS interfaces for easy integration with ROS.</li><li>Ease of use: LGSVL has a user-friendly interface and interactive tools, making it easy to create and edit scenes. It also offers Python and C++ APIs for user customization and development.</li><li>Map data details: LGSVL’s map data is relatively detailed, supporting high-precision maps and real-world road networks, providing a more realistic simulation environment.</li></ul><p>  Pros: Ease of use and scene editing, rich map data details, good ROS compatibility.<br>  Cons: Higher computational resource requirements.</p><h2 id="Emphasis-of-different-simulators"><a href="#Emphasis-of-different-simulators" class="headerlink" title="Emphasis of different simulators:"></a>Emphasis of different simulators:</h2><ul><li><p>CARLA focuses on providing a highly realistic simulation environment with rich map details. It also excels in ROS compatibility, although the actual usage of ROS in CARLA may not be particularly user-friendly.</p></li><li><p>BeamNG emphasizes vehicle physics simulation and collision detection, suitable for in-depth research on vehicle behavior and physical characteristics.</p></li><li><p>LGSVL focuses on providing an easy-to-use interface and interactive tools, as well as high-precision map data, suitable for rapid prototyping and testing of autonomous driving algorithms.</p></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>notebook</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Autopilot</tag>
-      
-      <tag>simulator</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Task_2 lesson06(Opinion)</title>
     <link href="/2024/06/23/Task_2-lesson06(Opinion)/"/>
     <url>/2024/06/23/Task_2-lesson06(Opinion)/</url>
